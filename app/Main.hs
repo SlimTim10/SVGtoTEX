@@ -35,7 +35,7 @@ parse [file]
   where ext = ".svg"
 parse _ = usage >> exit
  
-usage = putStrLn "Usage: SVGToPDF [-h] FILENAME"
+usage = putStrLn "Usage: svg_to_tex [-h] FILENAME"
 exit = exitWith ExitSuccess
 die = exitWith (ExitFailure 1)
 

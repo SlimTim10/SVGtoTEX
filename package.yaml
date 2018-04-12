@@ -30,7 +30,7 @@ library:
   source-dirs: src
 
 executables:
-  SVGtoTEX-exe:
+  svg_to_tex:
     main:                Main.hs
     source-dirs:         app
     ghc-options:

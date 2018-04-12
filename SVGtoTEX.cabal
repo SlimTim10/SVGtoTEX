@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2930a15c59e47f391aeb31adad05facb64a3c5a7414107513f40f3902bdea9d3
+-- hash: 8ee83fc19dc4c4e816f1b9eca299cb26ce5fcab5cfe344afc1a19ef8ff550428
 
 name:           SVGtoTEX
 version:        0.1.0.0
@@ -40,7 +40,7 @@ library
       Paths_SVGtoTEX
   default-language: Haskell2010
 
-executable SVGtoTEX-exe
+executable svg_to_tex
   main-is: Main.hs
   hs-source-dirs:
       app
