@@ -1,1 +1,1 @@
-# SVGtoPDF
+# SVGtoTEX

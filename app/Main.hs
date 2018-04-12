@@ -12,10 +12,10 @@ import System.Environment (getArgs)
 import System.Exit (exitWith, ExitCode (ExitSuccess, ExitFailure))
 import Data.List (isSuffixOf)
 
-main = getArgs >>= parse >>= svgToPdf
+main = getArgs >>= parse >>= svgToTex
 
-svgToPdf :: FilePath -> IO ()
-svgToPdf fileName = do
+svgToTex :: FilePath -> IO ()
+svgToTex fileName = do
   let tmpDir = "tmp"
   let pdfFile = tmpDir ++ "/" ++ fileName ++ ".pdf"
   let pdfTexFile = tmpDir ++ "/" ++ fileName ++ ".pdf_tex"

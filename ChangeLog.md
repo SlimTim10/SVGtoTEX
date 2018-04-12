@@ -1,3 +1,3 @@
-# Changelog for SVGtoPDF
+# Changelog for SVGtoTEX
 
 ## Unreleased changes

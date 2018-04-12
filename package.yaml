@@ -1,6 +1,6 @@
-name:                SVGtoPDF
+name:                SVGtoTEX
 version:             0.1.0.0
-github:              "SlimTim10/SVGtoPDF"
+github:              "SlimTim10/SVGtoTEX"
 license:             BSD3
 author:              "SlimTim10"
 maintainer:          "slimtim10@gmail.com"
@@ -17,7 +17,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on Github at <https://github.com/SlimTim10/SVGtoPDF#readme>
+description:         Please see the README on Github at <https://github.com/SlimTim10/SVGtoTEX#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -30,7 +30,7 @@ library:
   source-dirs: src
 
 executables:
-  SVGtoPDF-exe:
+  SVGtoTEX-exe:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -38,10 +38,10 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - SVGtoPDF
+    - SVGtoTEX
 
 tests:
-  SVGtoPDF-test:
+  SVGtoTEX-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
@@ -49,4 +49,4 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - SVGtoPDF
+    - SVGtoTEX
