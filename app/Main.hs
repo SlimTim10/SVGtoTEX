@@ -9,8 +9,8 @@ import Text.PDF.Info (pdfInfo, pdfInfoPages)
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
 import System.Environment (getArgs)
-import System.Exit
-import Data.List ((\\))
+import System.Exit (exitWith, ExitCode (ExitSuccess, ExitFailure))
+import Data.List (isSuffixOf)
 
 main = getArgs >>= parse >>= svgToPdf
 
@@ -61,8 +61,3 @@ replaceStrInFile fileName needle replacement = do
 
 -- fixOutput :: FilePath -> IO ()
 -- fixOutput = _
-
-endsWith :: (Eq a) => [a] -> [a] -> Bool
-endsWith suffix str
-  | length str < length suffix = False
-  | otherwise = (reverse str \\ reverse suffix) == drop (length suffix) (reverse str)
