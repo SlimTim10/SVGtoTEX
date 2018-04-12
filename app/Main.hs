@@ -29,7 +29,10 @@ svgToPdf fileName = do
 
 parse :: [String] -> IO String
 parse ["-h"] = usage >> exit
-parse [file] = return file
+parse [file]
+  | isSuffixOf ext file = return $ take (length file - length ext) file
+  | otherwise = return file
+  where ext = ".svg"
 parse _ = usage >> exit
  
 usage = putStrLn "Usage: SVGToPDF [-h] FILENAME"
