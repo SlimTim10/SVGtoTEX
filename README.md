@@ -1,5 +1,9 @@
 # SVGtoTEX
 
+## Install
+
+`stack install`
+
 ## Usage
 
 ```
