@@ -2,42 +2,39 @@
 
 module Main where
 
-import Lib
 import System.Process (callCommand)
 import System.Directory (createDirectoryIfMissing)
 import Text.PDF.Info (pdfInfo, pdfInfoPages)
-import qualified Data.Text as T
-import qualified Data.Text.IO as T
-import System.Environment (getArgs)
-import System.Exit (exitWith, ExitCode (ExitSuccess, ExitFailure))
-import Data.List (isSuffixOf)
+import Options.Applicative (execParser)
 
-main = getArgs >>= parse >>= svgToTex
+import Lib (replaceStrInFile, stripExt)
+import CommandOptions
+  (opts
+  , Options
+    ( Options
+    , optFileName
+    , optInDir
+    , optOutDir
+    )
+  )
 
-svgToTex :: FilePath -> IO ()
-svgToTex fileName = do
-  let tmpDir = "tmp"
-  let pdfFile = tmpDir ++ "/" ++ fileName ++ ".pdf"
-  let pdfTexFile = tmpDir ++ "/" ++ fileName ++ ".pdf_tex"
-  let svgFile = fileName ++ ".svg"
-  createDirectoryIfMissing True tmpDir
+main :: IO ()
+main = do
+  options <- execParser opts
+  svgToTex options
+
+svgToTex :: Options -> IO ()
+svgToTex (Options { optFileName=fileName, optInDir=inDir, optOutDir=outDir } ) = do
+  let file = stripExt ".svg" fileName
+  let pdfFile = outDir ++ "/" ++ file ++ ".pdf"
+  let pdfTexFile = outDir ++ "/" ++ file ++ ".pdf_tex"
+  let svgFile = inDir ++ "/" ++ file ++ ".svg"
+  createDirectoryIfMissing True outDir
   createPDF svgFile pdfFile
   maxPage <- getMaxPage pdfFile
   let badPageString = "page=" ++ show (maxPage + 1)
   let goodPageString = "page=" ++ show maxPage
   replaceStrInFile pdfTexFile badPageString goodPageString
-
-parse :: [String] -> IO String
-parse ["-h"] = usage >> exit
-parse [file]
-  | isSuffixOf ext file = return $ take (length file - length ext) file
-  | otherwise = return file
-  where ext = ".svg"
-parse _ = usage >> exit
- 
-usage = putStrLn "Usage: svg_to_tex [-h] FILENAME"
-exit = exitWith ExitSuccess
-die = exitWith (ExitFailure 1)
 
 createPDF :: FilePath -> FilePath -> IO ()
 createPDF svgFile pdfFile = callCommand inkscapeCommand
@@ -56,11 +53,3 @@ getMaxPage pdf = do
     pagesFromInfo (Right info) = case pdfInfoPages info of
       (Just pages) -> return pages
       Nothing -> error "pdfinfo failed: No pages found"
-
-replaceStrInFile :: FilePath -> String -> String -> IO ()
-replaceStrInFile fileName needle replacement = do
-  txt <- T.readFile fileName
-  T.writeFile fileName $ T.replace (T.pack needle) (T.pack replacement) txt
-
--- fixOutput :: FilePath -> IO ()
--- fixOutput = _

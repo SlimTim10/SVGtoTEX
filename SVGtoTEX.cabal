@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 784007f3409a23b216837fcc06a99f6f378a26ccfcfe99ecb64a015b9bcd4b88
+-- hash: 3b5c9e5a441069c28c36682bce8a892e07636de96987e836e03ae4d2572bc680
 
 name:           SVGtoTEX
 version:        0.1.0.0
@@ -36,6 +36,7 @@ library
     , process >=1.6.3.0
     , text >=1.2.3.0
   exposed-modules:
+      CommandOptions
       Lib
   other-modules:
       Paths_SVGtoTEX
