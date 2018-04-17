@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8ee83fc19dc4c4e816f1b9eca299cb26ce5fcab5cfe344afc1a19ef8ff550428
+-- hash: 784007f3409a23b216837fcc06a99f6f378a26ccfcfe99ecb64a015b9bcd4b88
 
 name:           SVGtoTEX
 version:        0.1.0.0
@@ -31,6 +31,7 @@ library
   build-depends:
       base >=4.7 && <5
     , directory >=1.3.2.2
+    , optparse-applicative >=0.14.2.0
     , pdfinfo >=1.5.4
     , process >=1.6.3.0
     , text >=1.2.3.0
@@ -49,6 +50,7 @@ executable svg_to_tex
       SVGtoTEX
     , base >=4.7 && <5
     , directory >=1.3.2.2
+    , optparse-applicative >=0.14.2.0
     , pdfinfo >=1.5.4
     , process >=1.6.3.0
     , text >=1.2.3.0
@@ -66,6 +68,7 @@ test-suite SVGtoTEX-test
       SVGtoTEX
     , base >=4.7 && <5
     , directory >=1.3.2.2
+    , optparse-applicative >=0.14.2.0
     , pdfinfo >=1.5.4
     , process >=1.6.3.0
     , text >=1.2.3.0
